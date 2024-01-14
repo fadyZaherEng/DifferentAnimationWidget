@@ -43,8 +43,8 @@ class _RotationSizeScaleFadeTransitionWidgetState
         FadeTransition(
           opacity: animation!,
           child: Container(
-            height: 200,
-            width: 200,
+            height: 100,
+            width: 100,
             decoration: BoxDecoration(
               color: Colors.red,
               borderRadius: BorderRadius.circular(20),
