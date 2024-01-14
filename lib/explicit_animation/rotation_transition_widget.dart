@@ -16,7 +16,6 @@ class _RotationSizeScaleFadeTransitionWidgetState
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     controller = AnimationController(
       vsync: this,
