@@ -51,6 +51,8 @@ class _RotationSizeScaleFadeTransitionWidgetState
             ),
           ),
         ),
+        Text("FadeTransition",
+            style: Theme.of(context).textTheme.headlineSmall),
         const SizedBox(
           height: 20,
         ),
@@ -65,6 +67,8 @@ class _RotationSizeScaleFadeTransitionWidgetState
             ),
           ),
         ),
+        Text("SizeTransition",
+            style: Theme.of(context).textTheme.headlineSmall),
         const SizedBox(
           height: 20,
         ),
@@ -79,6 +83,8 @@ class _RotationSizeScaleFadeTransitionWidgetState
             ),
           ),
         ),
+        Text("ScaleTransition",
+            style: Theme.of(context).textTheme.headlineSmall),
         const SizedBox(
           height: 20,
         ),
@@ -93,6 +99,8 @@ class _RotationSizeScaleFadeTransitionWidgetState
             ),
           ),
         ),
+        Text("RotationTransition",
+            style: Theme.of(context).textTheme.headlineSmall),
       ],
     );
   }

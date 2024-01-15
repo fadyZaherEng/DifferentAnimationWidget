@@ -49,22 +49,9 @@ class _AnimatedDefaultTextWidgetState extends State<AnimatedDefaultTextWidget> {
               fontWeight: fontWeight,
               color: color,
             ),
-            child: const Text("Welcome"),
+            child: const Text("AnimatedDefaultTextStyle"),
           ),
         ),
-        // Center(
-        //     child: TextButton(
-        //   onPressed: () {
-        //     setState(() {
-        //       fontSize = fontSize == 30 ? 50 : 30;
-        //       fontWeight = fontWeight == FontWeight.normal
-        //           ? FontWeight.bold
-        //           : FontWeight.normal;
-        //       color = color == Colors.blue ? Colors.red : Colors.blue;
-        //     });
-        //   },
-        //   child: const Text("Change"),
-        // ))
       ],
     );
   }

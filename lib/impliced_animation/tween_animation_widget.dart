@@ -40,7 +40,7 @@ class _TweenAnimationWidgetState extends State<TweenAnimationWidget> {
           height: 20,
         ),
         Text(
-          'Angle: ${(_angle * 180 / pi).round()}',
+          'Angle: ${(_angle * 180 / pi).round()} using TweenAnimationBuilder',
         ),
         const SizedBox(
           height: 20,

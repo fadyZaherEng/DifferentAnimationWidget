@@ -27,7 +27,7 @@ class _AnimatedPositionedWidgetState extends State<AnimatedPositionedWidget> {
             child: Stack(
               alignment: Alignment.center,
               children: [
-                const Text("Welcome"),
+                const Text("AnimatedPositioned"),
                 AnimatedPositioned(
                   duration: const Duration(seconds: 3),
                   curve: Curves.linear,
@@ -46,7 +46,7 @@ class _AnimatedPositionedWidgetState extends State<AnimatedPositionedWidget> {
           ),
         ),
         const SizedBox(
-          height: 20,
+          height: 100,
         ),
         Center(
           child: SizedBox(
@@ -63,7 +63,7 @@ class _AnimatedPositionedWidgetState extends State<AnimatedPositionedWidget> {
                       child: Visibility(
                         visible: visible,
                         child: const Text(
-                          "Welcome",
+                          "AnimatedPositioned",
                           textAlign: TextAlign.center,
                         ),
                       ),

@@ -1,4 +1,7 @@
-import 'package:anim_app/explicit_animation/rotation_transition_widget.dart';
+import 'package:anim_app/custom_explicit_animation/custom_explicit_animation_widget.dart';
+import 'package:anim_app/explicit_animation/defult_text_style_transition_widget.dart';
+import 'package:anim_app/explicit_animation/rotation_scale_size_fade_transition_widget.dart';
+import 'package:anim_app/explicit_animation/slide_decoration_align_transition_widget.dart';
 import 'package:anim_app/impliced_animation/animated_container_opacity_widget.dart';
 import 'package:anim_app/impliced_animation/animated_default_text_widget.dart';
 import 'package:anim_app/impliced_animation/animated_padding_align_widget.dart';
@@ -43,6 +46,12 @@ class _AnimationWidgetsState extends State<AnimationWidgets> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              SizedBox(height: 50),
+              CustomExplicitAnimation(),
+              SizedBox(height: 100),
+              DefualtTextStyleTransitionWidget(),
+              SizedBox(height: 100),
+              AlignSlideDecorationTransitionWidget(),
               SizedBox(height: 100),
               RotationSizeScaleFadeTransitionWidget(),
               SizedBox(height: 100),

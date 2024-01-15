@@ -40,16 +40,18 @@ class _AnimatedContainerScreenState extends State<AnimatedContainerScreen> {
         ),
         TextButton(
             onPressed: () {
-              setState(() {
-                opacity = !opacity;
-                Random random = Random();
-                color = Color.fromARGB(random.nextInt(256), random.nextInt(256),
-                    random.nextInt(256), 1);
-                width = random.nextInt(300).toDouble();
-                height = random.nextInt(300).toDouble();
-              });
+              setState(
+                () {
+                  opacity = !opacity;
+                  Random random = Random();
+                  color = Color.fromARGB(random.nextInt(256),
+                      random.nextInt(256), random.nextInt(256), 1);
+                  width = random.nextInt(300).toDouble();
+                  height = random.nextInt(300).toDouble();
+                },
+              );
             },
-            child: const Text('Click Me')),
+            child: const Text('AnimatedContainer inside AnimatedOpacity')),
       ],
     );
   }

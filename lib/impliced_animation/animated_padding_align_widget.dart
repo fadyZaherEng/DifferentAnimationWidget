@@ -79,7 +79,7 @@ class _AnimatedPaddingAlignWidgetState
                       padding = padding == 0 ? 10 : 0;
                     });
                   },
-                  child: const Text('Padding'),
+                  child: const Text('AnimatedPadding'),
                 ),
               ],
             ),
@@ -87,7 +87,7 @@ class _AnimatedPaddingAlignWidgetState
           //animated align move object based on x and y inside container
           // i can make click happen each second automatically using Timer
           const SizedBox(
-            height: 20,
+            height: 100,
           ),
           Container(
             height: 200,
@@ -121,7 +121,7 @@ class _AnimatedPaddingAlignWidgetState
                 );
               });
             },
-            child: const Text('Align'),
+            child: const Text('AnimatedAlign'),
           ),
         ],
       ),
