@@ -44,14 +44,18 @@ class _CustomAnimatedWidgetState extends State<CustomAnimatedWidget>
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        OutlineButtonTransition(
-          borderWidth: _animation!,
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            OutlineButtonTransition(
+              borderWidth: _animation!,
+            ),
+          ],
         ),
-      ],
+      ),
     );
   }
 }
