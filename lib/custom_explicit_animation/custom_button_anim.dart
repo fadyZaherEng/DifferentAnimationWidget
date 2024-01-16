@@ -453,10 +453,7 @@ class _CustomBtnAnimState extends State<CustomBtnAnim>
                 milliseconds: 600,
               ),
               opacity: opacity ? 1 : 0,
-              child: AnimatedAlign(
-                duration: const Duration(
-                  milliseconds: 600,
-                ),
+              child: Align(
                 alignment: const Alignment(0, 0),
                 child: AnimatedContainer(
                   duration: const Duration(
@@ -534,7 +531,11 @@ class OutlineButtonTransition extends AnimatedWidget {
                 (value) => animationController!.reverse(),
               );
             },
-            child: const Text('Outlined Button'),
+            child: const Text('Click Me',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                )),
           ),
         ],
       ),
