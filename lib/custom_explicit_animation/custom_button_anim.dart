@@ -21,7 +21,8 @@ class _CustomBtnAnimState extends State<CustomBtnAnim>
     with SingleTickerProviderStateMixin {
   double width = 200;
   double height = 60;
-  Color color = Colors.teal;
+  Color color = const Color(0xFF7bdcb5);
+  Color border = const Color(0xFF00d084);
   bool opacity = false;
   Animation<double>? animation;
   Animation<ContainerDetails>? _animation;
@@ -35,13 +36,6 @@ class _CustomBtnAnimState extends State<CustomBtnAnim>
         seconds: 1,
       ),
     );
-    // animation = Tween<double>(
-    //   begin: 0,
-    //   end: 1,
-    // ).animate(CurvedAnimation(
-    //   parent: animationController!,
-    //   curve: Curves.linear,
-    // ));
     _animation = Tween<ContainerDetails>(
       begin: ContainerDetails(0, 0, 0),
       end: ContainerDetails(200, 50, 2),
@@ -73,6 +67,10 @@ class _CustomBtnAnimState extends State<CustomBtnAnim>
               height: 100,
             ),
             customBtnWidgetAnim(),
+            const SizedBox(
+              height: 100,
+            ),
+            customAnotherBtn3(),
             const SizedBox(
               height: 100,
             ),
@@ -115,7 +113,7 @@ class _CustomBtnAnimState extends State<CustomBtnAnim>
                 color: color,
                 border: Border.all(
                   width: 4,
-                  color: Colors.cyan,
+                  color: border,
                 ),
                 boxShadow: [
                   BoxShadow(
@@ -131,7 +129,7 @@ class _CustomBtnAnimState extends State<CustomBtnAnim>
                   "Click Me",
                   style: TextStyle(
                     color: opacity ? Colors.white : Colors.black,
-                    fontSize: 18,
+                    fontSize: 16,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -331,9 +329,9 @@ class _CustomBtnAnimState extends State<CustomBtnAnim>
                   height: height,
                   width: width,
                   decoration: BoxDecoration(
-                    color: Colors.teal,
+                    color: color,
                     border: Border.all(
-                      color: Colors.cyan,
+                      color: border,
                       width: 4,
                     ),
                   ),
@@ -342,7 +340,7 @@ class _CustomBtnAnimState extends State<CustomBtnAnim>
                       'Click Me',
                       style: TextStyle(
                         color: Colors.black,
-                        fontSize: 18,
+                        fontSize: 16,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -360,15 +358,15 @@ class _CustomBtnAnimState extends State<CustomBtnAnim>
                   child: Container(
                     height: height - 2,
                     width: width,
-                    decoration: const BoxDecoration(
-                      color: Colors.teal,
+                    decoration: BoxDecoration(
+                      color: color,
                     ),
                     child: const Center(
                       child: Text(
                         'Click Me',
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 18,
+                          fontSize: 16,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -412,6 +410,84 @@ class _CustomBtnAnimState extends State<CustomBtnAnim>
           ),
         ),
       );
+
+  customAnotherBtn3() {
+    return InkWell(
+      onTap: () {
+        opacity = !opacity;
+        setState(() {
+          Future.delayed(const Duration(
+            seconds: 2,
+          )).then((value) {
+            opacity = !opacity;
+          });
+        });
+      },
+      child: SizedBox(
+        height: height,
+        width: width,
+        child: Stack(
+          children: [
+            Container(
+              height: height,
+              width: width,
+              decoration: BoxDecoration(
+                color: color,
+                border: Border.all(
+                  color: border,
+                  width: 4,
+                ),
+              ),
+              child: const Center(
+                child: Text(
+                  'Click Me',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+            AnimatedOpacity(
+              duration: const Duration(
+                milliseconds: 600,
+              ),
+              opacity: opacity ? 1 : 0,
+              child: AnimatedAlign(
+                duration: const Duration(
+                  milliseconds: 600,
+                ),
+                alignment: const Alignment(0, 0),
+                child: AnimatedContainer(
+                  duration: const Duration(
+                    milliseconds: 600,
+                  ),
+                  height: opacity ? 0 : height,
+                  width: opacity ? 0 : width,
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    color: color,
+                    border: Border.all(
+                      color: Colors.white,
+                      width: 4,
+                    ),
+                  ),
+                  child: const Center(
+                    child: Text(
+                      'Click Me',
+                      style: TextStyle(
+                        fontSize: 16,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }
 
 class OutlineButtonTransition extends AnimatedWidget {

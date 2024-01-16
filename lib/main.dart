@@ -23,8 +23,14 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        //colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
+        //colorSchemeSeed: Colors.deepPurple,
+        primaryColor: Colors.teal,
+        primarySwatch: Colors.teal,
+        // appBarTheme: const AppBarTheme(
+        //   backgroundColor: Colors.teal,
+        // ),
       ),
       home: const CustomBtnAnim(),
     );
