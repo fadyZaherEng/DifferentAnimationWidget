@@ -21,7 +21,7 @@ class _CustomBtnAnimState extends State<CustomBtnAnim>
     with SingleTickerProviderStateMixin {
   double width = 200;
   double height = 60;
-  Color color = Colors.red;
+  Color color = Colors.teal;
   bool opacity = false;
   Animation<double>? animation;
   Animation<ContainerDetails>? _animation;
@@ -32,7 +32,7 @@ class _CustomBtnAnimState extends State<CustomBtnAnim>
     animationController = AnimationController(
       vsync: this,
       duration: const Duration(
-        milliseconds: 500,
+        seconds: 1,
       ),
     );
     // animation = Tween<double>(
@@ -68,6 +68,10 @@ class _CustomBtnAnimState extends State<CustomBtnAnim>
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            customBtnAnother(),
+            const SizedBox(
+              height: 100,
+            ),
             customBtnWidgetAnim(),
             const SizedBox(
               height: 100,
@@ -81,19 +85,236 @@ class _CustomBtnAnimState extends State<CustomBtnAnim>
     );
   }
 
+  customBtnAnother() {
+    return InkWell(
+      onTap: () {
+        setState(() {
+          opacity = !opacity;
+          Future.delayed(const Duration(
+            seconds: 2,
+          )).then((value) {
+            setState(() {
+              opacity = !opacity;
+            });
+          });
+        });
+      },
+      child: SizedBox(
+        height: height,
+        width: width,
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            AnimatedContainer(
+              duration: const Duration(
+                seconds: 1,
+              ),
+              width: width,
+              height: height,
+              decoration: BoxDecoration(
+                color: color,
+                border: Border.all(
+                  width: 4,
+                  color: Colors.cyan,
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.2),
+                    blurRadius: 25,
+                    offset: const Offset(-1, 0),
+                    spreadRadius: 15,
+                  ),
+                ],
+              ),
+              child: Center(
+                child: Text(
+                  "Click Me",
+                  style: TextStyle(
+                    color: opacity ? Colors.white : Colors.black,
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+            AnimatedOpacity(
+              duration: const Duration(
+                seconds: 1,
+              ),
+              opacity: opacity ? 1 : 0,
+              child: Align(
+                alignment: const Alignment(1, -1),
+                child: AnimatedScale(
+                  duration: const Duration(
+                    seconds: 1,
+                  ),
+                  scale: opacity ? 1 : 0,
+                  alignment: const Alignment(1, -1),
+                  child: AnimatedContainer(
+                    duration: const Duration(
+                      seconds: 1,
+                    ),
+                    width: width,
+                    height: 4,
+                    decoration: BoxDecoration(
+                      color: color,
+                      border: const Border(
+                        top: BorderSide(
+                          width: 4,
+                          color: Colors.white,
+                        ),
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.2),
+                          blurRadius: 25,
+                          offset: const Offset(1, -1),
+                          spreadRadius: 15,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            AnimatedOpacity(
+              duration: const Duration(
+                seconds: 1,
+              ),
+              opacity: opacity ? 1 : 0,
+              child: Align(
+                alignment: const Alignment(1, -1),
+                child: AnimatedScale(
+                  duration: const Duration(
+                    seconds: 1,
+                  ),
+                  scale: opacity ? 1 : 0,
+                  alignment: const Alignment(1, -1),
+                  child: AnimatedContainer(
+                    duration: const Duration(
+                      seconds: 1,
+                    ),
+                    width: 4,
+                    height: height,
+                    decoration: BoxDecoration(
+                      color: color,
+                      border: const Border(
+                        left: BorderSide(
+                          width: 4,
+                          color: Colors.white,
+                        ),
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.2),
+                          blurRadius: 25,
+                          offset: const Offset(1, -1),
+                          spreadRadius: 15,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            AnimatedOpacity(
+              duration: const Duration(
+                seconds: 1,
+              ),
+              opacity: opacity ? 1 : 0,
+              child: Align(
+                alignment: const Alignment(-1, 1),
+                child: AnimatedScale(
+                  duration: const Duration(
+                    seconds: 1,
+                  ),
+                  scale: opacity ? 1 : 0,
+                  alignment: const Alignment(-1, 1),
+                  child: AnimatedContainer(
+                    duration: const Duration(
+                      seconds: 1,
+                    ),
+                    width: width,
+                    height: 4,
+                    decoration: BoxDecoration(
+                      color: color,
+                      border: const Border(
+                        bottom: BorderSide(
+                          width: 4,
+                          color: Colors.white,
+                        ),
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.2),
+                          blurRadius: 25,
+                          offset: const Offset(-1, 1),
+                          spreadRadius: 15,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            AnimatedOpacity(
+              duration: const Duration(
+                seconds: 1,
+              ),
+              opacity: opacity ? 1 : 0,
+              child: Align(
+                alignment: const Alignment(-1, 1),
+                child: AnimatedScale(
+                  duration: const Duration(
+                    seconds: 1,
+                  ),
+                  scale: opacity ? 1 : 0,
+                  alignment: const Alignment(-1, 1),
+                  child: AnimatedContainer(
+                    duration: const Duration(
+                      seconds: 1,
+                    ),
+                    width: 4,
+                    height: height,
+                    decoration: BoxDecoration(
+                      color: color,
+                      border: const Border(
+                        right: BorderSide(
+                          width: 4,
+                          color: Colors.white,
+                        ),
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.2),
+                          blurRadius: 25,
+                          offset: const Offset(-1, 1),
+                          spreadRadius: 15,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
   customBtnWidgetAnim() => InkWell(
         onTap: () {
-          setState(() {
-            opacity = !opacity;
-            Future.delayed(const Duration(
-              seconds: 1,
-            )).then((value) => {
-                  setState(() {
-                    opacity = !opacity;
-                    animationController!.forward();
-                  })
-                });
-          });
+          opacity = !opacity;
+          setState(() {});
+          Future.delayed(const Duration(
+            seconds: 1,
+          )).then((value) => {
+                setState(() {
+                  opacity = !opacity;
+                  animationController!.forward();
+                })
+              });
         },
         child: SizedBox(
           height: height,
@@ -103,7 +324,7 @@ class _CustomBtnAnimState extends State<CustomBtnAnim>
             children: [
               AnimatedOpacity(
                 duration: const Duration(
-                  milliseconds: 500,
+                  seconds: 1,
                 ),
                 opacity: !opacity ? 1 : 0,
                 child: Container(
@@ -113,12 +334,17 @@ class _CustomBtnAnimState extends State<CustomBtnAnim>
                     color: Colors.teal,
                     border: Border.all(
                       color: Colors.cyan,
-                      width: 2,
+                      width: 4,
                     ),
                   ),
                   child: const Center(
                     child: Text(
-                      'AnimatedContainer',
+                      'Click Me',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ),
@@ -126,7 +352,7 @@ class _CustomBtnAnimState extends State<CustomBtnAnim>
               // if (opacity)
               AnimatedOpacity(
                 duration: const Duration(
-                  milliseconds: 500,
+                  seconds: 1,
                 ),
                 opacity: opacity ? 1 : 0,
                 child: Align(
@@ -135,13 +361,15 @@ class _CustomBtnAnimState extends State<CustomBtnAnim>
                     height: height - 2,
                     width: width,
                     decoration: const BoxDecoration(
-                      color: Colors.blue,
+                      color: Colors.teal,
                     ),
                     child: const Center(
                       child: Text(
-                        'AnimatedContainer',
+                        'Click Me',
                         style: TextStyle(
                           color: Colors.white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
@@ -156,20 +384,27 @@ class _CustomBtnAnimState extends State<CustomBtnAnim>
                   padding: const EdgeInsets.only(
                     top: 56,
                   ),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.2),
-                          blurRadius: 25,
-                          offset: const Offset(0, 0),
-                          spreadRadius: 15,
-                        ),
-                      ],
+                  child: AnimatedScale(
+                    duration: const Duration(
+                      seconds: 1,
                     ),
-                    height: 3,
-                    width: width,
+                    scale: opacity ? 1 : 0,
+                    alignment: const Alignment(-1, -1),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.2),
+                            blurRadius: 25,
+                            offset: const Offset(-1, 0),
+                            spreadRadius: 15,
+                          ),
+                        ],
+                      ),
+                      height: 4,
+                      width: width,
+                    ),
                   ),
                 ),
               ),
@@ -203,7 +438,7 @@ class OutlineButtonTransition extends AnimatedWidget {
         children: [
           AnimatedContainer(
             duration: const Duration(
-              milliseconds: 500,
+              seconds: 1,
             ),
             height: borderWidth.value.height,
             width: borderWidth.value.width,

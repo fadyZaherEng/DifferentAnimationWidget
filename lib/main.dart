@@ -1,4 +1,5 @@
-import 'package:anim_app/build_in_animation_widget/like_btn_widget.dart';
+import 'package:anim_app/custom_explicit_animation/custom_button_anim.dart';
+import 'package:anim_app/custom_explicit_animation/custom_explicit_animated_widget.dart';
 import 'package:anim_app/custom_explicit_animation/custom_explicit_animation_widget.dart';
 import 'package:anim_app/explicit_animation/defult_text_style_transition_widget.dart';
 import 'package:anim_app/explicit_animation/rotation_scale_size_fade_transition_widget.dart';
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const LikeBtnWidget(),
+      home: const CustomBtnAnim(),
     );
   }
 }
@@ -49,8 +50,8 @@ class _AnimationWidgetsState extends State<AnimationWidgets> {
             children: [
               // SizedBox(height: 50),
               // FadeInImageWidget(),
-              // SizedBox(height: 50),
-              // CustomAnimatedWidget(),
+              SizedBox(height: 50),
+              CustomAnimatedWidget(),
               SizedBox(height: 50),
               CustomExplicitAnimation(),
               SizedBox(height: 100),
