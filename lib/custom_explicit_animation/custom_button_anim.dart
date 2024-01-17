@@ -19,12 +19,14 @@ AnimationController? animationController;
 
 class _CustomBtnAnimState extends State<CustomBtnAnim>
     with SingleTickerProviderStateMixin {
-  double width = 200;
-  double height = 60;
-  Color color = const Color(0xFF7bdcb5);
-  Color border = const Color(0xFF00d084);
-  bool opacity = false;
-  Animation<double>? animation;
+  final double _width = 200;
+  final double _height = 60;
+  final Color _color = const Color(0xFF7bdcb5);
+  final Color _border = const Color(0xFF00d084);
+  bool _opacityBtn1 = false;
+  bool _opacityBtn2 = false;
+  bool _opacityBtn3 = false;
+  Animation<double>? _animationDouble;
   Animation<ContainerDetails>? _animation;
 
   @override
@@ -33,7 +35,7 @@ class _CustomBtnAnimState extends State<CustomBtnAnim>
     animationController = AnimationController(
       vsync: this,
       duration: const Duration(
-        seconds: 1,
+        milliseconds: 700,
       ),
     );
     _animation = Tween<ContainerDetails>(
@@ -62,286 +64,281 @@ class _CustomBtnAnimState extends State<CustomBtnAnim>
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            customBtnAnother(),
+            _customBtn1(),
             const SizedBox(
               height: 100,
             ),
-            customBtnWidgetAnim(),
+            _customBtn2(),
             const SizedBox(
               height: 100,
             ),
-            customAnotherBtn3(),
+            _customBtn3(),
             const SizedBox(
               height: 100,
             ),
-            OutlineButtonTransition(
-              borderWidth: _animation!,
-            ),
+            // OutlineButtonTransition(
+            //   borderWidth: _animation!,
+            // ),
           ],
         ),
       ),
     );
   }
 
-  customBtnAnother() {
-    return InkWell(
-      onTap: () {
-        setState(() {
-          opacity = !opacity;
-          Future.delayed(const Duration(
-            seconds: 2,
-          )).then((value) {
-            setState(() {
-              opacity = !opacity;
+  Widget _customBtn1() => InkWell(
+        onTap: () {
+          setState(() {
+            _opacityBtn1 = !_opacityBtn1;
+            Future.delayed(const Duration(
+              milliseconds: 1500,
+            )).then((value) {
+              setState(() {
+                _opacityBtn1 = !_opacityBtn1;
+              });
             });
           });
-        });
-      },
-      child: SizedBox(
-        height: height,
-        width: width,
-        child: Stack(
-          alignment: Alignment.center,
-          children: [
-            AnimatedContainer(
-              duration: const Duration(
-                seconds: 1,
-              ),
-              width: width,
-              height: height,
-              decoration: BoxDecoration(
-                color: color,
-                border: Border.all(
-                  width: 4,
-                  color: border,
+        },
+        child: SizedBox(
+          height: _height,
+          width: _width,
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              AnimatedContainer(
+                duration: const Duration(
+                  milliseconds: 700,
                 ),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.2),
-                    blurRadius: 25,
-                    offset: const Offset(-1, 0),
-                    spreadRadius: 15,
+                width: _width,
+                height: _height,
+                decoration: BoxDecoration(
+                  color: _color,
+                  border: Border.all(
+                    width: 3,
+                    color: _border,
                   ),
-                ],
-              ),
-              child: Center(
-                child: Text(
-                  "Click Me",
-                  style: TextStyle(
-                    color: opacity ? Colors.white : Colors.black,
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.2),
+                      blurRadius: 25,
+                      offset: const Offset(-1, 0),
+                      spreadRadius: 15,
+                    ),
+                  ],
+                ),
+                child: Center(
+                  child: Text(
+                    "foo",
+                    style: TextStyle(
+                      color: _opacityBtn1 ? Colors.white : Colors.black,
+                      fontSize: 16,
+                    ),
                   ),
                 ),
               ),
-            ),
-            AnimatedOpacity(
-              duration: const Duration(
-                seconds: 1,
-              ),
-              opacity: opacity ? 1 : 0,
-              child: Align(
-                alignment: const Alignment(1, -1),
-                child: AnimatedScale(
-                  duration: const Duration(
-                    seconds: 1,
-                  ),
-                  scale: opacity ? 1 : 0,
+              AnimatedOpacity(
+                duration: const Duration(
+                  milliseconds: 700,
+                ),
+                opacity: _opacityBtn1 ? 1 : 0,
+                child: Align(
                   alignment: const Alignment(1, -1),
-                  child: AnimatedContainer(
+                  child: AnimatedScale(
                     duration: const Duration(
-                      seconds: 1,
+                      milliseconds: 700,
                     ),
-                    width: width,
-                    height: 4,
-                    decoration: BoxDecoration(
-                      color: color,
-                      border: const Border(
-                        top: BorderSide(
-                          width: 4,
-                          color: Colors.white,
-                        ),
+                    scale: _opacityBtn1 ? 1 : 0,
+                    alignment: const Alignment(1, -1),
+                    child: AnimatedContainer(
+                      duration: const Duration(
+                        milliseconds: 700,
                       ),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.2),
-                          blurRadius: 25,
-                          offset: const Offset(1, -1),
-                          spreadRadius: 15,
+                      width: _width,
+                      height: 4,
+                      decoration: BoxDecoration(
+                        color: _color,
+                        border: const Border(
+                          top: BorderSide(
+                            width: 3,
+                            color: Colors.white,
+                          ),
                         ),
-                      ],
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.2),
+                            blurRadius: 25,
+                            offset: const Offset(1, -1),
+                            spreadRadius: 15,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-            AnimatedOpacity(
-              duration: const Duration(
-                seconds: 1,
-              ),
-              opacity: opacity ? 1 : 0,
-              child: Align(
-                alignment: const Alignment(1, -1),
-                child: AnimatedScale(
-                  duration: const Duration(
-                    seconds: 1,
-                  ),
-                  scale: opacity ? 1 : 0,
+              AnimatedOpacity(
+                duration: const Duration(
+                  milliseconds: 700,
+                ),
+                opacity: _opacityBtn1 ? 1 : 0,
+                child: Align(
                   alignment: const Alignment(1, -1),
-                  child: AnimatedContainer(
+                  child: AnimatedScale(
                     duration: const Duration(
-                      seconds: 1,
+                      milliseconds: 700,
                     ),
-                    width: 4,
-                    height: height,
-                    decoration: BoxDecoration(
-                      color: color,
-                      border: const Border(
-                        left: BorderSide(
-                          width: 4,
-                          color: Colors.white,
-                        ),
+                    scale: _opacityBtn1 ? 1 : 0,
+                    alignment: const Alignment(1, -1),
+                    child: AnimatedContainer(
+                      duration: const Duration(
+                        milliseconds: 700,
                       ),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.2),
-                          blurRadius: 25,
-                          offset: const Offset(1, -1),
-                          spreadRadius: 15,
+                      width: 3,
+                      height: _height,
+                      decoration: BoxDecoration(
+                        color: _color,
+                        border: const Border(
+                          left: BorderSide(
+                            width: 3,
+                            color: Colors.white,
+                          ),
                         ),
-                      ],
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.2),
+                            blurRadius: 25,
+                            offset: const Offset(1, -1),
+                            spreadRadius: 15,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-            AnimatedOpacity(
-              duration: const Duration(
-                seconds: 1,
-              ),
-              opacity: opacity ? 1 : 0,
-              child: Align(
-                alignment: const Alignment(-1, 1),
-                child: AnimatedScale(
-                  duration: const Duration(
-                    seconds: 1,
-                  ),
-                  scale: opacity ? 1 : 0,
+              AnimatedOpacity(
+                duration: const Duration(
+                  milliseconds: 700,
+                ),
+                opacity: _opacityBtn1 ? 1 : 0,
+                child: Align(
                   alignment: const Alignment(-1, 1),
-                  child: AnimatedContainer(
+                  child: AnimatedScale(
                     duration: const Duration(
-                      seconds: 1,
+                      milliseconds: 700,
                     ),
-                    width: width,
-                    height: 4,
-                    decoration: BoxDecoration(
-                      color: color,
-                      border: const Border(
-                        bottom: BorderSide(
-                          width: 4,
-                          color: Colors.white,
-                        ),
+                    scale: _opacityBtn1 ? 1 : 0,
+                    alignment: const Alignment(-1, 1),
+                    child: AnimatedContainer(
+                      duration: const Duration(
+                        milliseconds: 700,
                       ),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.2),
-                          blurRadius: 25,
-                          offset: const Offset(-1, 1),
-                          spreadRadius: 15,
+                      width: _width,
+                      height: 4,
+                      decoration: BoxDecoration(
+                        color: _color,
+                        border: const Border(
+                          bottom: BorderSide(
+                            width: 3,
+                            color: Colors.white,
+                          ),
                         ),
-                      ],
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.2),
+                            blurRadius: 25,
+                            offset: const Offset(-1, 1),
+                            spreadRadius: 15,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-            AnimatedOpacity(
-              duration: const Duration(
-                seconds: 1,
-              ),
-              opacity: opacity ? 1 : 0,
-              child: Align(
-                alignment: const Alignment(-1, 1),
-                child: AnimatedScale(
-                  duration: const Duration(
-                    seconds: 1,
-                  ),
-                  scale: opacity ? 1 : 0,
+              AnimatedOpacity(
+                duration: const Duration(
+                  milliseconds: 700,
+                ),
+                opacity: _opacityBtn1 ? 1 : 0,
+                child: Align(
                   alignment: const Alignment(-1, 1),
-                  child: AnimatedContainer(
+                  child: AnimatedScale(
                     duration: const Duration(
-                      seconds: 1,
+                      milliseconds: 700,
                     ),
-                    width: 4,
-                    height: height,
-                    decoration: BoxDecoration(
-                      color: color,
-                      border: const Border(
-                        right: BorderSide(
-                          width: 4,
-                          color: Colors.white,
-                        ),
+                    scale: _opacityBtn1 ? 1 : 0,
+                    alignment: const Alignment(-1, 1),
+                    child: AnimatedContainer(
+                      duration: const Duration(
+                        milliseconds: 700,
                       ),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.2),
-                          blurRadius: 25,
-                          offset: const Offset(-1, 1),
-                          spreadRadius: 15,
+                      width: 3,
+                      height: _height,
+                      decoration: BoxDecoration(
+                        color: _color,
+                        border: const Border(
+                          right: BorderSide(
+                            width: 3,
+                            color: Colors.white,
+                          ),
                         ),
-                      ],
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.2),
+                            blurRadius: 25,
+                            offset: const Offset(-1, 1),
+                            spreadRadius: 15,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
-      ),
-    );
-  }
+      );
 
-  customBtnWidgetAnim() => InkWell(
+  Widget _customBtn2() => InkWell(
         onTap: () {
-          opacity = !opacity;
+          _opacityBtn2 = !_opacityBtn2;
           setState(() {});
           Future.delayed(const Duration(
-            seconds: 1,
+            milliseconds: 1500,
           )).then((value) => {
                 setState(() {
-                  opacity = !opacity;
-                  animationController!.forward();
+                  _opacityBtn2 = !_opacityBtn2;
                 })
               });
         },
         child: SizedBox(
-          height: height,
-          width: width,
+          height: _height,
+          width: _width,
           child: Stack(
             alignment: Alignment.center,
             children: [
               AnimatedOpacity(
                 duration: const Duration(
-                  seconds: 1,
+                  milliseconds: 700,
                 ),
-                opacity: !opacity ? 1 : 0,
+                opacity: !_opacityBtn2 ? 1 : 0,
                 child: Container(
-                  height: height,
-                  width: width,
+                  height: _height,
+                  width: _width,
                   decoration: BoxDecoration(
-                    color: color,
+                    color: _color,
                     border: Border.all(
-                      color: border,
-                      width: 4,
+                      color: _border,
+                      width: 3,
                     ),
                   ),
                   child: const Center(
                     child: Text(
-                      'Click Me',
+                      'curmudgeon',
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 16,
-                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
@@ -350,24 +347,23 @@ class _CustomBtnAnimState extends State<CustomBtnAnim>
               // if (opacity)
               AnimatedOpacity(
                 duration: const Duration(
-                  seconds: 1,
+                  milliseconds: 700,
                 ),
-                opacity: opacity ? 1 : 0,
+                opacity: _opacityBtn2 ? 1 : 0,
                 child: Align(
                   alignment: Alignment.topCenter,
                   child: Container(
-                    height: height - 2,
-                    width: width,
+                    height: _height - 2,
+                    width: _width,
                     decoration: BoxDecoration(
-                      color: color,
+                      color: _color,
                     ),
                     child: const Center(
                       child: Text(
-                        'Click Me',
+                        'curmudgeon',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 16,
-                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
@@ -377,16 +373,16 @@ class _CustomBtnAnimState extends State<CustomBtnAnim>
               //if (opacity)
               AnimatedOpacity(
                 duration: const Duration(milliseconds: 500),
-                opacity: opacity ? 1 : 0,
+                opacity: _opacityBtn2 ? 1 : 0,
                 child: Padding(
                   padding: const EdgeInsets.only(
                     top: 56,
                   ),
                   child: AnimatedScale(
                     duration: const Duration(
-                      seconds: 1,
+                      milliseconds: 700,
                     ),
-                    scale: opacity ? 1 : 0,
+                    scale: _opacityBtn2 ? 1 : 0,
                     alignment: const Alignment(-1, -1),
                     child: Container(
                       decoration: BoxDecoration(
@@ -401,7 +397,7 @@ class _CustomBtnAnimState extends State<CustomBtnAnim>
                         ],
                       ),
                       height: 4,
-                      width: width,
+                      width: _width,
                     ),
                   ),
                 ),
@@ -411,80 +407,80 @@ class _CustomBtnAnimState extends State<CustomBtnAnim>
         ),
       );
 
-  customAnotherBtn3() {
-    return InkWell(
-      onTap: () {
-        opacity = !opacity;
-        setState(() {
+  Widget _customBtn3() => InkWell(
+        onTap: () {
+          _opacityBtn3 = !_opacityBtn3;
+          setState(() {});
           Future.delayed(const Duration(
-            seconds: 2,
+            milliseconds: 1500,
           )).then((value) {
-            opacity = !opacity;
+            _opacityBtn3 = !_opacityBtn3;
+            setState(() {});
           });
-        });
-      },
-      child: SizedBox(
-        height: height,
-        width: width,
-        child: Stack(
-          children: [
-            Container(
-              height: height,
-              width: width,
-              decoration: BoxDecoration(
-                color: color,
-                border: Border.all(
-                  color: border,
-                  width: 4,
-                ),
-              ),
-              child: const Center(
-                child: Text(
-                  'Click Me',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
+        },
+        child: SizedBox(
+          height: _height,
+          width: _width,
+          child: Stack(
+            children: [
+              Container(
+                height: _height,
+                width: _width,
+                decoration: BoxDecoration(
+                  color: _color,
+                  border: Border.all(
+                    color: _border,
+                    width: 3,
                   ),
                 ),
-              ),
-            ),
-            AnimatedOpacity(
-              duration: const Duration(
-                milliseconds: 600,
-              ),
-              opacity: opacity ? 1 : 0,
-              child: Align(
-                alignment: const Alignment(0, 0),
-                child: AnimatedContainer(
-                  duration: const Duration(
-                    milliseconds: 600,
-                  ),
-                  height: opacity ? 0 : height,
-                  width: opacity ? 0 : width,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    color: color,
-                    border: Border.all(
-                      color: Colors.white,
-                      width: 4,
+                child: const Center(
+                  child: Text(
+                    'bar',
+                    style: TextStyle(
+                      fontSize: 16,
                     ),
                   ),
-                  child: const Center(
-                    child: Text(
-                      'Click Me',
-                      style: TextStyle(
-                        fontSize: 16,
+                ),
+              ),
+              AnimatedOpacity(
+                duration: const Duration(
+                  milliseconds: 700,
+                ),
+                opacity: _opacityBtn3 ? 1 : 0,
+                child: AnimatedAlign(
+                  duration: const Duration(
+                    milliseconds: 700,
+                  ),
+                  alignment: const Alignment(0, 0),
+                  child: AnimatedContainer(
+                    duration: const Duration(
+                      milliseconds: 700,
+                    ),
+                    height: _opacityBtn3 ? _height : 0,
+                    width: _opacityBtn3 ? _width : 0,
+                    decoration: BoxDecoration(
+                      color: _color,
+                      border: Border.all(
+                        color: Colors.white,
+                        width: 3,
+                      ),
+                    ),
+                    child: const Center(
+                      child: Text(
+                        'bar',
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
-      ),
-    );
-  }
+      );
 }
 
 class OutlineButtonTransition extends AnimatedWidget {
@@ -497,13 +493,13 @@ class OutlineButtonTransition extends AnimatedWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 50,
+      height: 60,
       width: 200,
       decoration: BoxDecoration(
-        color: Colors.grey.withOpacity(0.1),
+        color: const Color(0xFF7bdcb5),
         border: Border.all(
-          color: Colors.black,
-          width: 2,
+          color: const Color(0xFF00d084),
+          width: 3,
         ),
       ),
       child: Stack(
@@ -511,14 +507,15 @@ class OutlineButtonTransition extends AnimatedWidget {
         children: [
           AnimatedContainer(
             duration: const Duration(
-              seconds: 1,
+              milliseconds: 700,
             ),
-            height: borderWidth.value.height,
-            width: borderWidth.value.width,
+            height: 60,
+            width: 200,
             decoration: BoxDecoration(
+              color: const Color(0xFF7bdcb5),
               border: Border.all(
-                color: Colors.black,
-                width: borderWidth.value.borderWidth,
+                color: Colors.white,
+                width: 3,
               ),
             ),
           ),
@@ -526,16 +523,18 @@ class OutlineButtonTransition extends AnimatedWidget {
             onPressed: () {
               animationController!.forward();
               Future.delayed(const Duration(
-                seconds: 1,
+                milliseconds: 700,
               )).then(
                 (value) => animationController!.reverse(),
               );
             },
-            child: const Text('Click Me',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                )),
+            child: const Text(
+              'Click Me',
+              style: TextStyle(
+                fontSize: 16,
+                color: Colors.white,
+              ),
+            ),
           ),
         ],
       ),
