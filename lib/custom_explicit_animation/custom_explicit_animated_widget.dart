@@ -36,7 +36,7 @@ class _CustomAnimatedWidgetState extends State<CustomAnimatedWidget>
     ).animate(
       CurvedAnimation(
         parent: animationController!,
-        curve: Curves.linear,
+        curve: Curves.easeOutBack,
         reverseCurve: Curves.easeOutBack.flipped,
       ),
     );

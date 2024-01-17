@@ -26,7 +26,6 @@ class _CustomBtnAnimState extends State<CustomBtnAnim>
   bool _opacityBtn1 = false;
   bool _opacityBtn2 = false;
   bool _opacityBtn3 = false;
-  Animation<double>? _animationDouble;
   Animation<ContainerDetails>? _animation;
 
   @override
@@ -40,12 +39,12 @@ class _CustomBtnAnimState extends State<CustomBtnAnim>
     );
     _animation = Tween<ContainerDetails>(
       begin: ContainerDetails(0, 0, 0),
-      end: ContainerDetails(200, 50, 2),
+      end: ContainerDetails(200, 60, 3),
     ).animate(
       CurvedAnimation(
         parent: animationController!,
-        curve: Curves.linear,
-        reverseCurve: Curves.elasticOut.flipped,
+        curve: Curves.easeOutBack,
+        reverseCurve: Curves.easeOutBack.flipped,
       ),
     );
   }
@@ -76,9 +75,9 @@ class _CustomBtnAnimState extends State<CustomBtnAnim>
             const SizedBox(
               height: 100,
             ),
-            // OutlineButtonTransition(
-            //   borderWidth: _animation!,
-            // ),
+            OutlineButtonTransition(
+              borderWidth: _animation!,
+            ),
           ],
         ),
       ),
@@ -487,56 +486,69 @@ class OutlineButtonTransition extends AnimatedWidget {
   Animation<ContainerDetails> get borderWidth =>
       listenable as Animation<ContainerDetails>;
 
-  const OutlineButtonTransition({super.key, borderWidth})
+  OutlineButtonTransition({super.key, borderWidth})
       : super(listenable: borderWidth);
-
+  bool opacity = false;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 60,
-      width: 200,
-      decoration: BoxDecoration(
-        color: const Color(0xFF7bdcb5),
-        border: Border.all(
-          color: const Color(0xFF00d084),
-          width: 3,
-        ),
-      ),
-      child: Stack(
-        alignment: Alignment.center,
-        children: [
-          AnimatedContainer(
-            duration: const Duration(
-              milliseconds: 700,
-            ),
-            height: 60,
-            width: 200,
-            decoration: BoxDecoration(
-              color: const Color(0xFF7bdcb5),
-              border: Border.all(
-                color: Colors.white,
-                width: 3,
+    return InkWell(
+      onTap: () {
+        //   opacity = !opacity;
+        animationController!.forward(
+          from: 0,
+        );
+        Future.delayed(const Duration(
+          milliseconds: 1500,
+        )).then(
+          (value) {
+            //     opacity = !opacity;
+            animationController!.reverse(
+              from: 1,
+            );
+          },
+        );
+      },
+      child: SizedBox(
+        height: 60,
+        width: 200,
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            Container(
+              height: 60,
+              width: 200,
+              decoration: BoxDecoration(
+                color: const Color(0xFF7bdcb5),
+                border: Border.all(
+                  color: const Color(0xFF00d084),
+                  width: 3,
+                ),
+              ),
+              child: Center(
+                child: Text(
+                  "Foo",
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: opacity ? Colors.white : null,
+                  ),
+                ),
               ),
             ),
-          ),
-          MaterialButton(
-            onPressed: () {
-              animationController!.forward();
-              Future.delayed(const Duration(
+            AnimatedContainer(
+              duration: const Duration(
                 milliseconds: 700,
-              )).then(
-                (value) => animationController!.reverse(),
-              );
-            },
-            child: const Text(
-              'Click Me',
-              style: TextStyle(
-                fontSize: 16,
-                color: Colors.white,
+              ),
+              height: borderWidth.value.height,
+              width: borderWidth.value.width,
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Colors.white,
+                  width: borderWidth.value.borderWidth,
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
